@@ -40,24 +40,30 @@ declare class PopSchemeMPL {
 
 declare class G1Element {
   static SIZE: number;
-  static fromBytes(msg: Uint8Array): G1Element;
+  static fromBytes(bytes: Uint8Array): G1Element;
   static generator(): G2Element;
   serialize(): Uint8Array;
   negate(): G1Element;
   deepcopy(): G1Element;
   get_fingerprint(): number;
-  add(): G1Element;
-  mul(): G1Element;
+  add(el: G1Element): G1Element;
+  mul(bn: Bignum): G1Element;
+  equalTo(el: G1Element): boolean;
   delete(): void;
 }
 
 declare class G2Element {
   static SIZE: number;
-  static fromBytes(): G2Element;
+  static fromBytes(bytes: Uint8Array): G2Element;
+  static fromG2Element(sk: G2Element): G2Element;
+  static aggregateSigs(sigs: G2Element[]): G2Element;
   static generator(): G2Element;
   serialize(): Uint8Array;
   negate(): G2Element;
   deepcopy(): G2Element;
+  add(el: G2Element): G2Element;
+  mul(bn: Bignum): G2Element;
+  equalTo(el: G2Element): boolean;
   delete(): void;
 }
 
@@ -68,6 +74,10 @@ declare class PrivateKey {
   deepcopy(): PrivateKey;
   serialize(): Uint8Array;
   get_g1(): G1Element;
+  get_g2(): G2Element;
+  mul_g1(el: G1Element): G1Element;
+  mul_g2(el: G2Element): G2Element;
+  equalTo(key: PrivateKey): boolean;
   delete(): void;
 }
 
