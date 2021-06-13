@@ -23,6 +23,7 @@ class UtilWrapper : public JSWrapper<Util> {
 public:
     static val Hash256(val message);
     static std::string HexStr(val message);
+    static std::string GetExceptionMessage(int exceptionPtr);
 };
 }  // namespace js_wrappers
 

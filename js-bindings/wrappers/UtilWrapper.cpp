@@ -25,4 +25,7 @@ std::string UtilWrapper::HexStr(val msg) {
     std::vector<uint8_t> bytes = helpers::toVector(msg);
     return Util::HexStr(bytes);
 }
+std::string UtilWrapper::GetExceptionMessage(int exceptionPtr) {
+    return std::string(reinterpret_cast<std::exception *>(exceptionPtr)->what());
+}
 }  // namespace js_wrappers

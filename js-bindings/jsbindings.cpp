@@ -108,6 +108,7 @@ EMSCRIPTEN_BINDINGS(blsjs) {
 
     class_<UtilWrapper>("Util")
         .class_function("hash256", &UtilWrapper::Hash256)
-        .class_function("hex_str", &UtilWrapper::HexStr);
+        .class_function("hex_str", &UtilWrapper::HexStr)
+        .class_function("get_exception_message", &UtilWrapper::GetExceptionMessage);
 };
 }  // namespace js_wrappers
